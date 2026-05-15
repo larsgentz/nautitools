@@ -9,21 +9,21 @@ robots: noindex,nofollow
 
 Angaben gemäß § 5 TMG
 
-Vorname Nachname  
-Straße Hausnummer  
-PLZ Ort  
-Deutschland
+Lars Gentz 
+Rosenheimer Str. 59 c 
+83043 Bd. Aibling 
+Deutschland  
 
 ## Kontakt
 
-E-Mail: mail@example.de
+E-Mail: apps@larsgentz.de
 
 ## Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
 
-Vorname Nachname  
-Straße Hausnummer  
-PLZ Ort  
-Deutschland
+Lars Gentz 
+Rosenheimer Str. 59 c 
+83043 Bd. Aibling 
+Deutschland  
 
 ## Haftung für Inhalte
 

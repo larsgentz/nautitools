@@ -1,11 +1,11 @@
 ---
-title: Datenschutzerklärung
+title: Datenschutzhinweise
 layout: default
 permalink: /datenschutz/
 robots: noindex,nofollow
 ---
 
-# Datenschutzerklärung
+# Datenschutzhinweise
 
 ## 1. Datenschutz auf einen Blick
 
@@ -16,12 +16,12 @@ Ich verarbeite personenbezogene Daten ausschließlich im Rahmen der gesetzlichen
 
 ## 2. Verantwortlicher
 
-Vorname Nachname  
-Straße Hausnummer  
-PLZ Ort  
+Lars Gentz 
+Rosenheimer Str. 59 c 
+83043 Bd. Aibling 
 Deutschland  
 
-E-Mail: mail@example.de
+E-Mail: apps@larsgentz.de
 
 ---
 
