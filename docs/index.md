@@ -50,12 +50,21 @@ layout: default
     <div class="support-icon">✉️</div>
     <div>
       <div class="app-name">Support</div>
-      <div class="app-tagline">Wir helfen gerne weiter</div>
+      <div class="app-tagline">Ich helfe gerne weiter</div>
     </div>
   </div>
   <p class="app-description">
-    Fragen, Feedback oder Probleme mit einer unserer Apps? Schreib uns einfach eine E-Mail –
-    wir melden uns so schnell wie möglich bei dir.
+    Fragen, Feedback oder Probleme mit einer meiner Apps? Schreib mir einfach eine E-Mail –
+    ich melde mich bei dir. Bitte beachte, dass das Erstellen dieser Apps in meiner Freizeit passiert - danke für Deine Geduld.
   </p>
-  <a class="support-link" href="mailto:apps@larsgentz.de">apps@larsgentz.de</a>
+  <a class="support-link" id="support-email" href="#">E-Mail wird geladen…</a>
 </div>
+
+<script>
+  (function () {
+    var u = 'apps', d = 'larsgentz' + '.' + 'de';
+    var el = document.getElementById('support-email');
+    el.href = 'mai' + 'lto:' + u + '@' + d;
+    el.textContent = u + '@' + d;
+  })();
+</script>
