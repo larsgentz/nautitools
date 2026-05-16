@@ -44,3 +44,18 @@ layout: default
     </div>
   </div>
 </div>
+
+<div class="card">
+  <div class="support-header">
+    <div class="support-icon">✉️</div>
+    <div>
+      <div class="app-name">Support</div>
+      <div class="app-tagline">Wir helfen gerne weiter</div>
+    </div>
+  </div>
+  <p class="app-description">
+    Fragen, Feedback oder Probleme mit einer unserer Apps? Schreib uns einfach eine E-Mail –
+    wir melden uns so schnell wie möglich bei dir.
+  </p>
+  <a class="support-link" href="mailto:apps@larsgentz.de">apps@larsgentz.de</a>
+</div>
