@@ -73,15 +73,12 @@ layout: default
   }
 
   .app-icon {
-    width: 72px;
-    height: 72px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #2b6cb0, #63b3ed);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    object-fit: cover;
   }
 
   .app-name {
@@ -128,57 +125,37 @@ layout: default
 
   .store-badges {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
     align-items: center;
   }
 
-  .store-badge {
+  .store-badge-wrap {
     display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: #1a202c;
-    color: white;
-    border-radius: 10px;
-    padding: 0.55rem 1.1rem;
-    text-decoration: none;
-    font-size: 0.8rem;
-    transition: background 0.15s;
-    opacity: 0.45;
-    cursor: default;
-    pointer-events: none;
-  }
-
-  .store-badge .store-icon {
-    font-size: 1.4rem;
-    line-height: 1;
-  }
-
-  .store-badge .store-text {
-    display: flex;
     flex-direction: column;
-    line-height: 1.2;
+    align-items: center;
+    gap: 0.4rem;
   }
 
-  .store-badge .store-label {
+  .store-badge-wrap a {
+    display: block;
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .store-badge-wrap img {
+    height: 44px;
+    width: auto;
+    display: block;
+  }
+
+  .store-badge-wrap .coming-soon-label {
     font-size: 0.65rem;
-    opacity: 0.8;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .store-badge .store-name {
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-
-  .store-badge.coming-soon::after {
-    content: "bald verfügbar";
-    font-size: 0.65rem;
-    background: #e2e8f0;
-    color: #4a5568;
+    color: #718096;
+    background: #edf2f7;
     border-radius: 4px;
-    padding: 0.15rem 0.4rem;
+    padding: 0.15rem 0.5rem;
   }
 
   footer {
@@ -223,7 +200,7 @@ layout: default
 
   <div class="card">
     <div class="app-header">
-      <div class="app-icon">⚓</div>
+      <img class="app-icon" src="{{ '/assets/icon_chain_calculator.png' | relative_url }}" alt="Ankerkettenrechner Icon">
       <div>
         <div class="app-name">Ankerkettenrechner</div>
         <div class="app-tagline">Die richtige Kettenlänge. Immer.</div>
@@ -245,20 +222,18 @@ layout: default
     </ul>
 
     <div class="store-badges">
-      <a class="store-badge coming-soon" href="#">
-        <span class="store-icon">🍎</span>
-        <span class="store-text">
-          <span class="store-label">Laden im</span>
-          <span class="store-name">App Store</span>
-        </span>
-      </a>
-      <a class="store-badge coming-soon" href="#">
-        <span class="store-icon">▶</span>
-        <span class="store-text">
-          <span class="store-label">Jetzt bei</span>
-          <span class="store-name">Google Play</span>
-        </span>
-      </a>
+      <div class="store-badge-wrap">
+        <a href="#">
+          <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Im App Store laden">
+        </a>
+        <span class="coming-soon-label">bald verfügbar</span>
+      </div>
+      <div class="store-badge-wrap">
+        <a href="#">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/de_badge_web_generic.png" alt="Jetzt bei Google Play">
+        </a>
+        <span class="coming-soon-label">bald verfügbar</span>
+      </div>
     </div>
   </div>
 </main>
