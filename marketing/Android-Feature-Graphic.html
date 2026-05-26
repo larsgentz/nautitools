@@ -2,16 +2,16 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Feature Graphic – Ankerkettenrechner</title>
+  <title>Android Feature Graphics – Nautitools</title>
   <style>
     /* ── Canvas: exactly 1024 × 500 px ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
-      width: 1024px;
-      height: 500px;
-      overflow: hidden;
+      width: 100%;
+      min-height: 100%;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #111827;
     }
 
     .canvas {
@@ -22,6 +22,11 @@
       overflow: hidden;
       display: flex;
       align-items: center;
+      margin: 0 0 24px;
+    }
+
+    .canvas.vhf {
+      background: linear-gradient(135deg, #061827 0%, #063b6d 42%, #0b79d0 78%, #24a7f2 100%);
     }
 
     /* ── Decorative circles ── */
@@ -35,6 +40,8 @@
     .ring-2 { width: 440px; height: 440px; top: -120px; right:  20px; }
     .ring-3 { width: 280px; height: 280px; top: -40px;  right: 100px; }
 
+    .vhf .deco-ring { border-color: rgba(255,255,255,0.09); }
+
     /* ── Glow behind icon ── */
     .icon-glow {
       position: absolute;
@@ -47,6 +54,10 @@
       background: radial-gradient(circle, rgba(99,179,237,0.18) 0%, transparent 70%);
     }
 
+    .vhf .icon-glow {
+      background: radial-gradient(circle, rgba(186,230,253,0.28) 0%, transparent 70%);
+    }
+
     /* ── Wave accent ── */
     .wave-accent {
       position: absolute;
@@ -56,6 +67,11 @@
       height: 3px;
       background: linear-gradient(90deg, transparent, #63b3ed 30%, #90cdf4 50%, #63b3ed 70%, transparent);
       opacity: 0.6;
+    }
+
+    .vhf .wave-accent {
+      background: linear-gradient(90deg, transparent, #bae6fd 30%, #ffffff 50%, #bae6fd 70%, transparent);
+      opacity: 0.75;
     }
 
     /* ── Left content ── */
@@ -90,6 +106,9 @@
       border-radius: 2px;
     }
 
+    .vhf .brand { color: #bae6fd; }
+    .vhf .brand::before { background: #bae6fd; }
+
     .app-title {
       font-size: 54px;
       font-weight: 800;
@@ -103,6 +122,8 @@
       color: #63b3ed;
     }
 
+    .vhf .app-title span { color: #bae6fd; }
+
     .divider {
       width: 48px;
       height: 3px;
@@ -110,6 +131,8 @@
       border-radius: 2px;
       margin-bottom: 20px;
     }
+
+    .vhf .divider { background: linear-gradient(90deg, #bae6fd, #ffffff); }
 
     .tagline {
       font-size: 19px;
@@ -176,6 +199,36 @@
     <div class="right">
       <div class="app-icon-wrap">
         <img src="icon_chain_calculator.png" alt="Ankerkettenrechner Icon">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="canvas vhf">
+
+    <!-- Decorative rings -->
+    <div class="deco-ring ring-1"></div>
+    <div class="deco-ring ring-2"></div>
+    <div class="deco-ring ring-3"></div>
+
+    <!-- Glow -->
+    <div class="icon-glow"></div>
+
+    <!-- Bottom accent line -->
+    <div class="wave-accent"></div>
+
+    <!-- Left: Text -->
+    <div class="left">
+      <div class="brand">Nautitools</div>
+      <div class="app-title">Marine VHF<br><span>Assistant</span></div>
+      <div class="divider"></div>
+      <p class="tagline">Seefunk-Sprüche –<br><strong>sicher und korrekt absetzen.</strong></p>
+    </div>
+
+    <!-- Right: Icon -->
+    <div class="right">
+      <div class="app-icon-wrap">
+        <img src="icon_marine_vhf_assistant.png" alt="Marine VHF Assistant Icon">
       </div>
     </div>
 
