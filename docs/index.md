@@ -69,7 +69,7 @@ layout: default
 
   <div class="store-badges">
     <div class="store-badge-wrap">
-      <a href="#">
+      <a href="https://apps.apple.com/de/app/marine-vhf-assistant/id6772940401" target="_blank" rel="noopener">
         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Im App Store laden">
       </a>
       <span class="coming-soon-label">bald verfügbar</span>
