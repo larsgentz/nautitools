@@ -1,8 +1,17 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="lang-de">
 <head>
   <meta charset="UTF-8">
-  <title>Android Feature Graphics – Nautitools</title>
+  <title data-title-de="Android Feature Graphics - Nautitools" data-title-en="Android Feature Graphics - Nautitools">Android Feature Graphics - Nautitools</title>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var lang = params.get('lang') === 'en' ? 'en' : 'de';
+      document.documentElement.lang = lang;
+      document.documentElement.className = document.documentElement.className.replace(/\blang-(de|en)\b/g, '').trim();
+      document.documentElement.classList.add('lang-' + lang);
+    })();
+  </script>
   <style>
     /* ── Canvas: exactly 1024 × 500 px ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,6 +22,60 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #111827;
     }
+
+    .toolbar {
+      width: 1024px;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 12px 0;
+      color: rgba(255,255,255,0.78);
+      font-size: 14px;
+    }
+
+    .language-selector {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .language-selector select {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.08);
+      color: #ffffff;
+      font: inherit;
+      line-height: 1.2;
+      padding: 7px 32px 7px 10px;
+      cursor: pointer;
+      background-image:
+        linear-gradient(45deg, transparent 50%, currentColor 50%),
+        linear-gradient(135deg, currentColor 50%, transparent 50%);
+      background-position:
+        calc(100% - 15px) 50%,
+        calc(100% - 10px) 50%;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    .language-selector select:focus {
+      outline: 2px solid rgba(144,205,244,0.65);
+      outline-offset: 2px;
+    }
+
+    .language-selector option {
+      color: #111827;
+      background: #ffffff;
+    }
+
+    [data-lang="en"] { display: none; }
+
+    html.lang-en [data-lang="de"] { display: none; }
+    html.lang-en [data-lang="en"] { display: block; }
+    html.lang-en span[data-lang="en"] { display: inline; }
 
     .canvas {
       position: relative;
@@ -122,6 +185,10 @@
       color: #63b3ed;
     }
 
+    .app-title.long {
+      font-size: 50px;
+    }
+
     .vhf .app-title span { color: #bae6fd; }
 
     .divider {
@@ -174,6 +241,17 @@
   </style>
 </head>
 <body>
+  <div class="toolbar">
+    <label class="language-selector" for="language-select">
+      <span data-lang="de">Sprache</span>
+      <span data-lang="en">Language</span>
+      <select id="language-select" aria-label="Sprache wechseln">
+        <option value="de">Deutsch</option>
+        <option value="en">English</option>
+      </select>
+    </label>
+  </div>
+
   <div class="canvas">
 
     <!-- Decorative rings -->
@@ -190,15 +268,17 @@
     <!-- Left: Text -->
     <div class="left">
       <div class="brand">Nautitools</div>
-      <div class="app-title">Ankerketten-<br><span>rechner</span></div>
+      <div class="app-title" data-lang="de">Ankerketten-<br><span>rechner</span></div>
+      <div class="app-title long" data-lang="en">Anchor Chain<br><span>Calculator</span></div>
       <div class="divider"></div>
-      <p class="tagline">Die richtige Kettenlänge –<br><strong>schnell und zuverlässig berechnet.</strong></p>
+      <p class="tagline" data-lang="de">Die richtige Kettenlänge –<br><strong>schnell und zuverlässig berechnet.</strong></p>
+      <p class="tagline" data-lang="en">The right scope –<br><strong>calculated quickly and reliably.</strong></p>
     </div>
 
     <!-- Right: Icon -->
     <div class="right">
       <div class="app-icon-wrap">
-        <img src="icon_chain_calculator.png" alt="Ankerkettenrechner Icon">
+        <img src="icon_chain_calculator.png" alt="Ankerkettenrechner Icon" data-alt-de="Ankerkettenrechner Icon" data-alt-en="Anchor Chain Calculator icon">
       </div>
     </div>
 
@@ -222,16 +302,51 @@
       <div class="brand">Nautitools</div>
       <div class="app-title">Marine VHF<br><span>Assistant</span></div>
       <div class="divider"></div>
-      <p class="tagline">Seefunk-Sprüche –<br><strong>sicher und korrekt absetzen.</strong></p>
+      <p class="tagline" data-lang="de">Seefunk-Sprüche –<br><strong>sicher und korrekt absetzen.</strong></p>
+      <p class="tagline" data-lang="en">Marine radio calls –<br><strong>sent clearly and correctly.</strong></p>
     </div>
 
     <!-- Right: Icon -->
     <div class="right">
       <div class="app-icon-wrap">
-        <img src="icon_marine_vhf_assistant.png" alt="Marine VHF Assistant Icon">
+        <img src="icon_marine_vhf_assistant.png" alt="Marine VHF Assistant Icon" data-alt-de="Marine VHF Assistant Icon" data-alt-en="Marine VHF Assistant icon">
       </div>
     </div>
 
   </div>
+  <script>
+    (function () {
+      var selector = document.getElementById('language-select');
+      var title = document.querySelector('title');
+      var params = new URLSearchParams(window.location.search);
+      var currentLang = params.get('lang') === 'en' ? 'en' : 'de';
+
+      function localiseDocument(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.classList.toggle('lang-de', lang === 'de');
+        document.documentElement.classList.toggle('lang-en', lang === 'en');
+        if (selector) selector.value = lang;
+        if (title) document.title = title.getAttribute('data-title-' + lang) || document.title;
+        document.querySelectorAll('img[data-alt-de]').forEach(function (image) {
+          image.alt = image.getAttribute('data-alt-' + lang) || image.alt;
+        });
+      }
+
+      localiseDocument(currentLang);
+
+      if (selector) {
+        selector.addEventListener('change', function () {
+          var nextLang = selector.value === 'en' ? 'en' : 'de';
+          var url = new URL(window.location.href);
+          if (nextLang === 'en') {
+            url.searchParams.set('lang', 'en');
+          } else {
+            url.searchParams.delete('lang');
+          }
+          window.location.href = url.pathname + url.search + url.hash;
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

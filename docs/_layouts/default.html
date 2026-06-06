@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="lang-de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }}</title>
-  {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+  <title data-title-de="{{ page.title | escape }}"{% if page.title_en %} data-title-en="{{ page.title_en | escape }}"{% endif %}>{{ page.title }}</title>
+  {% if page.description %}<meta name="description" content="{{ page.description }}"{% if page.description_en %} data-description-en="{{ page.description_en | escape }}"{% endif %}>{% endif %}
   {% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var lang = params.get('lang') === 'en' ? 'en' : 'de';
+      document.documentElement.lang = lang;
+      document.documentElement.className = document.documentElement.className.replace(/\blang-(de|en)\b/g, '').trim();
+      document.documentElement.classList.add('lang-' + lang);
+    })();
+  </script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -22,8 +31,53 @@
     header {
       background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
       color: white;
-      padding: 3rem 1.5rem 4rem;
+      padding: 1.25rem 1.5rem 4rem;
       text-align: center;
+    }
+
+    .header-top {
+      max-width: 860px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .language-selector {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.8rem;
+    }
+
+    .language-selector select {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      font: inherit;
+      line-height: 1.2;
+      padding: 0.35rem 1.7rem 0.35rem 0.65rem;
+      cursor: pointer;
+      background-image:
+        linear-gradient(45deg, transparent 50%, currentColor 50%),
+        linear-gradient(135deg, currentColor 50%, transparent 50%);
+      background-position:
+        calc(100% - 13px) 50%,
+        calc(100% - 8px) 50%;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    .language-selector select:focus {
+      outline: 2px solid rgba(255, 255, 255, 0.58);
+      outline-offset: 2px;
+    }
+
+    .language-selector option {
+      color: #1a202c;
+      background: white;
     }
 
     header .logo {
@@ -80,6 +134,13 @@
     footer a:hover { color: #2b6cb0; text-decoration: underline; }
 
     footer .separator { margin: 0 0.25rem; color: #cbd5e0; }
+
+    [data-lang="en"] { display: none; }
+
+    html.lang-en [data-lang="de"] { display: none; }
+    html.lang-en [data-lang="en"] { display: block; }
+    html.lang-en span[data-lang="en"],
+    html.lang-en a[data-lang="en"] { display: inline; }
 
     /* ── App list (index) ── */
     .section-title {
@@ -280,6 +341,7 @@
       .features { grid-template-columns: 1fr; }
       .app-header { flex-direction: column; align-items: flex-start; }
       header .logo { font-size: 2rem; }
+      .header-top { margin-bottom: 1rem; }
       .site-main.prose { padding: 1.5rem 1.25rem; }
     }
   </style>
@@ -287,9 +349,21 @@
 <body>
 
 <header>
+  <div class="header-top">
+    <label class="language-selector" for="language-select">
+      <span data-lang="de">Sprache</span>
+      <span data-lang="en">Language</span>
+      <select id="language-select" aria-label="Sprache wechseln">
+        <option value="de">Deutsch</option>
+        <option value="en">English</option>
+      </select>
+    </label>
+  </div>
   <a class="logo" href="{{ '/' | relative_url }}">⚓ Nauti<span>tools</span></a>
-  <p>Praktische Apps für Segler und Motorbootfahrer</p>
-  <p class="header-made-with">Mit ❤️ im Süden Münchens entwickelt</p>
+  <p data-lang="de">Praktische Apps für Segler und Motorbootfahrer</p>
+  <p data-lang="en">Practical apps for sailors and motorboaters</p>
+  <p class="header-made-with" data-lang="de">Mit Herz im Süden Münchens entwickelt</p>
+  <p class="header-made-with" data-lang="en">Made with care in the south of Munich</p>
 </header>
 
 <main class="site-main{% if page.main_class %} {{ page.main_class }}{% endif %}">
@@ -299,10 +373,71 @@
 <footer>
   &copy; {{ site.time | date: "%Y" }} Lars Gentz
   <span class="separator">·</span>
-  <a href="{{ '/impressum/' | relative_url }}">Impressum</a>
+  <a href="{{ '/impressum/' | relative_url }}">
+    <span data-lang="de">Impressum</span>
+    <span data-lang="en">Legal Notice</span>
+  </a>
   <span class="separator">·</span>
-  <a href="{{ '/datenschutz/' | relative_url }}">Datenschutz</a>
+  <a href="{{ '/datenschutz/' | relative_url }}">
+    <span data-lang="de">Datenschutz</span>
+    <span data-lang="en">Privacy Notice</span>
+  </a>
 </footer>
+
+<script>
+  (function () {
+    var supported = ['de', 'en'];
+    var params = new URLSearchParams(window.location.search);
+    var currentLang = params.get('lang') === 'en' ? 'en' : 'de';
+    var selector = document.getElementById('language-select');
+    var title = document.querySelector('title');
+    var description = document.querySelector('meta[name="description"]');
+
+    function localiseDocument(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.classList.toggle('lang-de', lang === 'de');
+      document.documentElement.classList.toggle('lang-en', lang === 'en');
+      if (selector) selector.value = lang;
+      if (title) document.title = title.getAttribute('data-title-' + lang) || title.getAttribute('data-title-de') || document.title;
+      if (description) {
+        description.setAttribute(
+          'content',
+          lang === 'en'
+            ? description.getAttribute('data-description-en') || description.getAttribute('content')
+            : {{ page.description | default: "" | jsonify }}
+        );
+      }
+      document.querySelectorAll('a[href]').forEach(function (link) {
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('#') === 0 || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) return;
+        var url = new URL(href, window.location.href);
+        if (url.origin !== window.location.origin) return;
+        if (lang === 'en') {
+          url.searchParams.set('lang', 'en');
+        } else {
+          url.searchParams.delete('lang');
+        }
+        link.href = url.pathname + url.search + url.hash;
+      });
+    }
+
+    if (supported.indexOf(currentLang) === -1) currentLang = 'de';
+    localiseDocument(currentLang);
+
+    if (selector) {
+      selector.addEventListener('change', function () {
+        var nextLang = selector.value === 'en' ? 'en' : 'de';
+        var url = new URL(window.location.href);
+        if (nextLang === 'en') {
+          url.searchParams.set('lang', 'en');
+        } else {
+          url.searchParams.delete('lang');
+        }
+        window.location.href = url.pathname + url.search + url.hash;
+      });
+    }
+  })();
+</script>
 
 </body>
 </html>
