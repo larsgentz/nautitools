@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-title-de="{{ page.title | escape }}"{% if page.title_en %} data-title-en="{{ page.title_en | escape }}"{% endif %}>{{ page.title }}</title>
-  {% if page.description %}<meta name="description" content="{{ page.description }}"{% if page.description_en %} data-description-en="{{ page.description_en | escape }}"{% endif %}>{% endif %}
+  <title data-title-de="{{ page.title | escape }}"{% if page.title_en %} data-title-en="{{ page.title_en | escape }}"{% endif %}{% if page.title_fr %} data-title-fr="{{ page.title_fr | escape }}"{% endif %}{% if page.title_es %} data-title-es="{{ page.title_es | escape }}"{% endif %}{% if page.title_nl %} data-title-nl="{{ page.title_nl | escape }}"{% endif %}>{{ page.title }}</title>
+  {% if page.description %}<meta name="description" content="{{ page.description }}"{% if page.description_en %} data-description-en="{{ page.description_en | escape }}"{% endif %}{% if page.description_fr %} data-description-fr="{{ page.description_fr | escape }}"{% endif %}{% if page.description_es %} data-description-es="{{ page.description_es | escape }}"{% endif %}{% if page.description_nl %} data-description-nl="{{ page.description_nl | escape }}"{% endif %}>{% endif %}
   {% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
   <script>
     (function () {
       var params = new URLSearchParams(window.location.search);
-      var lang = params.get('lang') === 'en' ? 'en' : 'de';
+      var supported = ['de', 'en', 'fr', 'es', 'nl'];
+      var requested = params.get('lang');
+      var lang = supported.indexOf(requested) === -1 ? 'de' : requested;
       document.documentElement.lang = lang;
-      document.documentElement.className = document.documentElement.className.replace(/\blang-(de|en)\b/g, '').trim();
+      document.documentElement.className = document.documentElement.className.replace(/\blang-(de|en|fr|es|nl)\b/g, '').trim();
       document.documentElement.classList.add('lang-' + lang);
     })();
   </script>
@@ -135,12 +137,29 @@
 
     footer .separator { margin: 0 0.25rem; color: #cbd5e0; }
 
-    [data-lang="en"] { display: none; }
+    [data-lang="en"],
+    [data-lang="fr"],
+    [data-lang="es"],
+    [data-lang="nl"] { display: none; }
 
-    html.lang-en [data-lang="de"] { display: none; }
-    html.lang-en [data-lang="en"] { display: block; }
+    html.lang-en [data-lang="de"],
+    html.lang-fr [data-lang="de"],
+    html.lang-es [data-lang="de"],
+    html.lang-nl [data-lang="de"] { display: none; }
+
+    html.lang-en [data-lang="en"],
+    html.lang-fr [data-lang="fr"],
+    html.lang-es [data-lang="es"],
+    html.lang-nl [data-lang="nl"] { display: block; }
+
     html.lang-en span[data-lang="en"],
-    html.lang-en a[data-lang="en"] { display: inline; }
+    html.lang-en a[data-lang="en"],
+    html.lang-fr span[data-lang="fr"],
+    html.lang-fr a[data-lang="fr"],
+    html.lang-es span[data-lang="es"],
+    html.lang-es a[data-lang="es"],
+    html.lang-nl span[data-lang="nl"],
+    html.lang-nl a[data-lang="nl"] { display: inline; }
 
     /* ── App list (index) ── */
     .section-title {
@@ -353,17 +372,29 @@
     <label class="language-selector" for="language-select">
       <span data-lang="de">Sprache</span>
       <span data-lang="en">Language</span>
+      <span data-lang="fr">Langue</span>
+      <span data-lang="es">Idioma</span>
+      <span data-lang="nl">Taal</span>
       <select id="language-select" aria-label="Sprache wechseln">
         <option value="de">Deutsch</option>
         <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="nl">Nederlands</option>
       </select>
     </label>
   </div>
   <a class="logo" href="{{ '/' | relative_url }}">⚓ Nauti<span>tools</span></a>
   <p data-lang="de">Praktische Apps für Segler und Motorbootfahrer</p>
   <p data-lang="en">Practical apps for sailors and motorboaters</p>
+  <p data-lang="fr">Des applications pratiques pour les voileux et les plaisanciers à moteur</p>
+  <p data-lang="es">Aplicaciones prácticas para navegantes a vela y a motor</p>
+  <p data-lang="nl">Praktische apps voor zeilers en motorbootvaarders</p>
   <p class="header-made-with" data-lang="de">Mit Herz im Süden Münchens entwickelt</p>
   <p class="header-made-with" data-lang="en">Made with care in the south of Munich</p>
+  <p class="header-made-with" data-lang="fr">Conçu avec soin au sud de Munich</p>
+  <p class="header-made-with" data-lang="es">Creado con cariño al sur de Múnich</p>
+  <p class="header-made-with" data-lang="nl">Met zorg gemaakt in het zuiden van München</p>
 </header>
 
 <main class="site-main{% if page.main_class %} {{ page.main_class }}{% endif %}">
@@ -376,19 +407,26 @@
   <a href="{{ '/impressum/' | relative_url }}">
     <span data-lang="de">Impressum</span>
     <span data-lang="en">Legal Notice</span>
+    <span data-lang="fr">Mentions légales</span>
+    <span data-lang="es">Aviso legal</span>
+    <span data-lang="nl">Juridische kennisgeving</span>
   </a>
   <span class="separator">·</span>
   <a href="{{ '/datenschutz/' | relative_url }}">
     <span data-lang="de">Datenschutz</span>
     <span data-lang="en">Privacy Notice</span>
+    <span data-lang="fr">Confidentialité</span>
+    <span data-lang="es">Privacidad</span>
+    <span data-lang="nl">Privacyverklaring</span>
   </a>
 </footer>
 
 <script>
   (function () {
-    var supported = ['de', 'en'];
+    var supported = ['de', 'en', 'fr', 'es', 'nl'];
     var params = new URLSearchParams(window.location.search);
-    var currentLang = params.get('lang') === 'en' ? 'en' : 'de';
+    var requestedLang = params.get('lang');
+    var currentLang = supported.indexOf(requestedLang) === -1 ? 'de' : requestedLang;
     var selector = document.getElementById('language-select');
     var title = document.querySelector('title');
     var description = document.querySelector('meta[name="description"]');
@@ -397,14 +435,17 @@
       document.documentElement.lang = lang;
       document.documentElement.classList.toggle('lang-de', lang === 'de');
       document.documentElement.classList.toggle('lang-en', lang === 'en');
+      document.documentElement.classList.toggle('lang-fr', lang === 'fr');
+      document.documentElement.classList.toggle('lang-es', lang === 'es');
+      document.documentElement.classList.toggle('lang-nl', lang === 'nl');
       if (selector) selector.value = lang;
       if (title) document.title = title.getAttribute('data-title-' + lang) || title.getAttribute('data-title-de') || document.title;
       if (description) {
         description.setAttribute(
           'content',
-          lang === 'en'
-            ? description.getAttribute('data-description-en') || description.getAttribute('content')
-            : {{ page.description | default: "" | jsonify }}
+          lang === 'de'
+            ? {{ page.description | default: "" | jsonify }}
+            : description.getAttribute('data-description-' + lang) || description.getAttribute('content')
         );
       }
       document.querySelectorAll('a[href]').forEach(function (link) {
@@ -412,10 +453,10 @@
         if (!href || href.indexOf('#') === 0 || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) return;
         var url = new URL(href, window.location.href);
         if (url.origin !== window.location.origin) return;
-        if (lang === 'en') {
-          url.searchParams.set('lang', 'en');
-        } else {
+        if (lang === 'de') {
           url.searchParams.delete('lang');
+        } else {
+          url.searchParams.set('lang', lang);
         }
         link.href = url.pathname + url.search + url.hash;
       });
@@ -426,12 +467,12 @@
 
     if (selector) {
       selector.addEventListener('change', function () {
-        var nextLang = selector.value === 'en' ? 'en' : 'de';
+        var nextLang = supported.indexOf(selector.value) === -1 ? 'de' : selector.value;
         var url = new URL(window.location.href);
-        if (nextLang === 'en') {
-          url.searchParams.set('lang', 'en');
-        } else {
+        if (nextLang === 'de') {
           url.searchParams.delete('lang');
+        } else {
+          url.searchParams.set('lang', nextLang);
         }
         window.location.href = url.pathname + url.search + url.hash;
       });

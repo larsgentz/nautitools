@@ -2,13 +2,15 @@
 <html lang="de" class="lang-de">
 <head>
   <meta charset="UTF-8">
-  <title data-title-de="Android Feature Graphics - Nautitools" data-title-en="Android Feature Graphics - Nautitools">Android Feature Graphics - Nautitools</title>
+  <title data-title-de="Android Feature Graphics - Nautitools" data-title-en="Android Feature Graphics - Nautitools" data-title-fr="Android Feature Graphics - Nautitools" data-title-es="Android Feature Graphics - Nautitools" data-title-nl="Android Feature Graphics - Nautitools">Android Feature Graphics - Nautitools</title>
   <script>
     (function () {
       var params = new URLSearchParams(window.location.search);
-      var lang = params.get('lang') === 'en' ? 'en' : 'de';
+      var supported = ['de', 'en', 'fr', 'es', 'nl'];
+      var requested = params.get('lang');
+      var lang = supported.indexOf(requested) === -1 ? 'de' : requested;
       document.documentElement.lang = lang;
-      document.documentElement.className = document.documentElement.className.replace(/\blang-(de|en)\b/g, '').trim();
+      document.documentElement.className = document.documentElement.className.replace(/\blang-(de|en|fr|es|nl)\b/g, '').trim();
       document.documentElement.classList.add('lang-' + lang);
     })();
   </script>
@@ -71,11 +73,25 @@
       background: #ffffff;
     }
 
-    [data-lang="en"] { display: none; }
+    [data-lang="en"],
+    [data-lang="fr"],
+    [data-lang="es"],
+    [data-lang="nl"] { display: none; }
 
-    html.lang-en [data-lang="de"] { display: none; }
-    html.lang-en [data-lang="en"] { display: block; }
-    html.lang-en span[data-lang="en"] { display: inline; }
+    html.lang-en [data-lang="de"],
+    html.lang-fr [data-lang="de"],
+    html.lang-es [data-lang="de"],
+    html.lang-nl [data-lang="de"] { display: none; }
+
+    html.lang-en [data-lang="en"],
+    html.lang-fr [data-lang="fr"],
+    html.lang-es [data-lang="es"],
+    html.lang-nl [data-lang="nl"] { display: block; }
+
+    html.lang-en span[data-lang="en"],
+    html.lang-fr span[data-lang="fr"],
+    html.lang-es span[data-lang="es"],
+    html.lang-nl span[data-lang="nl"] { display: inline; }
 
     .canvas {
       position: relative;
@@ -245,9 +261,15 @@
     <label class="language-selector" for="language-select">
       <span data-lang="de">Sprache</span>
       <span data-lang="en">Language</span>
+      <span data-lang="fr">Langue</span>
+      <span data-lang="es">Idioma</span>
+      <span data-lang="nl">Taal</span>
       <select id="language-select" aria-label="Sprache wechseln">
         <option value="de">Deutsch</option>
         <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="nl">Nederlands</option>
       </select>
     </label>
   </div>
@@ -270,15 +292,21 @@
       <div class="brand">Nautitools</div>
       <div class="app-title" data-lang="de">Ankerketten-<br><span>rechner</span></div>
       <div class="app-title long" data-lang="en">Anchor Chain<br><span>Calculator</span></div>
+      <div class="app-title long" data-lang="fr">Chaîne de<br><span>mouillage</span></div>
+      <div class="app-title long" data-lang="es">Cadena de<br><span>fondeo</span></div>
+      <div class="app-title long" data-lang="nl">Ankerketting<br><span>calculator</span></div>
       <div class="divider"></div>
       <p class="tagline" data-lang="de">Die richtige Kettenlänge –<br><strong>schnell und zuverlässig berechnet.</strong></p>
       <p class="tagline" data-lang="en">The right scope –<br><strong>calculated quickly and reliably.</strong></p>
+      <p class="tagline" data-lang="fr">La bonne longueur de chaîne –<br><strong>calculée vite et sûrement.</strong></p>
+      <p class="tagline" data-lang="es">La cadena justa –<br><strong>calculada rápida y fiablemente.</strong></p>
+      <p class="tagline" data-lang="nl">De juiste kettinglengte –<br><strong>snel en betrouwbaar berekend.</strong></p>
     </div>
 
     <!-- Right: Icon -->
     <div class="right">
       <div class="app-icon-wrap">
-        <img src="icon_chain_calculator.png" alt="Ankerkettenrechner Icon" data-alt-de="Ankerkettenrechner Icon" data-alt-en="Anchor Chain Calculator icon">
+        <img src="icon_chain_calculator.png" alt="Ankerkettenrechner Icon" data-alt-de="Ankerkettenrechner Icon" data-alt-en="Anchor Chain Calculator icon" data-alt-fr="Icône du calculateur de chaîne de mouillage" data-alt-es="Icono de la calculadora de cadena de fondeo" data-alt-nl="Pictogram van Ankerkettingcalculator">
       </div>
     </div>
 
@@ -304,12 +332,15 @@
       <div class="divider"></div>
       <p class="tagline" data-lang="de">Seefunk-Sprüche –<br><strong>sicher und korrekt absetzen.</strong></p>
       <p class="tagline" data-lang="en">Marine radio calls –<br><strong>sent clearly and correctly.</strong></p>
+      <p class="tagline" data-lang="fr">Appels VHF marins –<br><strong>clairs, sûrs et corrects.</strong></p>
+      <p class="tagline" data-lang="es">Llamadas VHF marinas –<br><strong>claras, seguras y correctas.</strong></p>
+      <p class="tagline" data-lang="nl">Marifoonoproepen –<br><strong>helder en correct verzonden.</strong></p>
     </div>
 
     <!-- Right: Icon -->
     <div class="right">
       <div class="app-icon-wrap">
-        <img src="icon_marine_vhf_assistant.png" alt="Marine VHF Assistant Icon" data-alt-de="Marine VHF Assistant Icon" data-alt-en="Marine VHF Assistant icon">
+        <img src="icon_marine_vhf_assistant.png" alt="Marine VHF Assistant Icon" data-alt-de="Marine VHF Assistant Icon" data-alt-en="Marine VHF Assistant icon" data-alt-fr="Icône de Marine VHF Assistant" data-alt-es="Icono de Marine VHF Assistant" data-alt-nl="Pictogram van Marine VHF Assistant">
       </div>
     </div>
 
@@ -319,12 +350,17 @@
       var selector = document.getElementById('language-select');
       var title = document.querySelector('title');
       var params = new URLSearchParams(window.location.search);
-      var currentLang = params.get('lang') === 'en' ? 'en' : 'de';
+      var supported = ['de', 'en', 'fr', 'es', 'nl'];
+      var requestedLang = params.get('lang');
+      var currentLang = supported.indexOf(requestedLang) === -1 ? 'de' : requestedLang;
 
       function localiseDocument(lang) {
         document.documentElement.lang = lang;
         document.documentElement.classList.toggle('lang-de', lang === 'de');
         document.documentElement.classList.toggle('lang-en', lang === 'en');
+        document.documentElement.classList.toggle('lang-fr', lang === 'fr');
+        document.documentElement.classList.toggle('lang-es', lang === 'es');
+        document.documentElement.classList.toggle('lang-nl', lang === 'nl');
         if (selector) selector.value = lang;
         if (title) document.title = title.getAttribute('data-title-' + lang) || document.title;
         document.querySelectorAll('img[data-alt-de]').forEach(function (image) {
@@ -336,12 +372,12 @@
 
       if (selector) {
         selector.addEventListener('change', function () {
-          var nextLang = selector.value === 'en' ? 'en' : 'de';
+          var nextLang = supported.indexOf(selector.value) === -1 ? 'de' : selector.value;
           var url = new URL(window.location.href);
-          if (nextLang === 'en') {
-            url.searchParams.set('lang', 'en');
-          } else {
+          if (nextLang === 'de') {
             url.searchParams.delete('lang');
+          } else {
+            url.searchParams.set('lang', nextLang);
           }
           window.location.href = url.pathname + url.search + url.hash;
         });
