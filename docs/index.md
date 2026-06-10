@@ -45,11 +45,10 @@ layout: default
         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de" alt="Im App Store laden">
       </a>
     </div>
-    <div class="store-badge-wrap">
-      <a href="#">
+    <div class="store-badge-wrap active">
+      <a href="https://play.google.com/store/apps/details?id=de.larsgentz.nautitools.chainCalculator" target="_blank" rel="noopener">
         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/de_badge_web_generic.png" alt="Jetzt bei Google Play">
       </a>
-      <span class="coming-soon-label">bald verfügbar</span>
     </div>
   </div>
 </div>
@@ -142,11 +141,10 @@ layout: default
         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-gb" alt="Download on the App Store">
       </a>
     </div>
-    <div class="store-badge-wrap">
-      <a href="#">
+    <div class="store-badge-wrap active">
+      <a href="https://play.google.com/store/apps/details?id=de.larsgentz.nautitools.chainCalculator" target="_blank" rel="noopener">
         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
       </a>
-      <span class="coming-soon-label">coming soon</span>
     </div>
   </div>
 </div>
@@ -239,11 +237,10 @@ layout: default
         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr" alt="Télécharger dans l'App Store">
       </a>
     </div>
-    <div class="store-badge-wrap">
-      <a href="#">
+    <div class="store-badge-wrap active">
+      <a href="https://play.google.com/store/apps/details?id=de.larsgentz.nautitools.chainCalculator" target="_blank" rel="noopener">
         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/fr_badge_web_generic.png" alt="Disponible sur Google Play">
       </a>
-      <span class="coming-soon-label">bientôt disponible</span>
     </div>
   </div>
 </div>
@@ -336,11 +333,10 @@ layout: default
         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es" alt="Descargar en App Store">
       </a>
     </div>
-    <div class="store-badge-wrap">
-      <a href="#">
+    <div class="store-badge-wrap active">
+      <a href="https://play.google.com/store/apps/details?id=de.larsgentz.nautitools.chainCalculator" target="_blank" rel="noopener">
         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" alt="Disponible en Google Play">
       </a>
-      <span class="coming-soon-label">próximamente</span>
     </div>
   </div>
 </div>
@@ -431,11 +427,10 @@ layout: default
         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/nl-nl" alt="Download in de App Store">
       </a>
     </div>
-    <div class="store-badge-wrap">
-      <a href="#">
+    <div class="store-badge-wrap active">
+      <a href="https://play.google.com/store/apps/details?id=de.larsgentz.nautitools.chainCalculator" target="_blank" rel="noopener">
         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/nl_badge_web_generic.png" alt="Ontdek het op Google Play">
       </a>
-      <span class="coming-soon-label">binnenkort beschikbaar</span>
     </div>
   </div>
 </div>
